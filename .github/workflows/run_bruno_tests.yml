@@ -28,13 +28,13 @@ jobs:
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
-        working-directory: BrunoCollection/DemoAurelienClimaginaire
+        working-directory: DemoAurelienClimaginaire
         run: bruno run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
-        working-directory: BrunoCollection/FakestoreAPI
+        working-directory: FakestoreAPI
         run: bruno run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
-        working-directory: BrunoCollection/Webinar_Climaginaire
+        working-directory: Webinar_Climaginaire
         run: bruno run --env environments/Webinar_Prod_Climaginaire.bru .
