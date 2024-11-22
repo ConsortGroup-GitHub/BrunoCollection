@@ -30,9 +30,6 @@ jobs:
           ls -l $(pwd)/node_modules/.bin
           $(pwd)/node_modules/.bin/bru --version || echo "Bru executable not found!"
 
-      - name: Debug Directory
-        run: pwd && ls -R
-
       - name: Run Collection FakestoreAPI
         working-directory: ${{ github.workspace }}/FakestoreAPI
         run: ${{ env.BRUNO_PATH }} run --env QA .
