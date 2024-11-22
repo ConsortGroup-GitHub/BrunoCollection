@@ -22,19 +22,22 @@ jobs:
           node-version: '20.12.1'
 
       - name: Install Bruno CLI
-        run: npm install @usebruno/cli
+        id: install-bruno
+        run: |
+          npm install @usebruno/cli
+          echo "BRUNO_PATH=$(pwd)/node_modules/.bin/bruno" >> $GITHUB_ENV
 
       - name: Debug Directory
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: DemoAurelienClimaginaire
-        run: ../node_modules/.bin/bruno run --env environments/Prod_Climaginaire.bru .
+        run: $BRUNO_PATH run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: FakestoreAPI
-        run: ../node_modules/.bin/bruno run --env environments/QA.bru .
+        run: $BRUNO_PATH run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: Webinar_Climaginaire
-        run: ../node_modules/.bin/bruno run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: $BRUNO_PATH run --env environments/Webinar_Prod_Climaginaire.bru .
