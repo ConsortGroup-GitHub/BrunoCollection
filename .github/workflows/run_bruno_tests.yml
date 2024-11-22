@@ -22,7 +22,10 @@ jobs:
           node-version: '16'
 
       - name: Install Bruno CLI
-        run: npm install -g @usebruno/cli
+        run: |
+          npm install -g @usebruno/cli
+          echo "Bruno installed at: $(which bruno)"
+          bruno --version
 
       - name: Debug Directory
         run: pwd && ls -R
