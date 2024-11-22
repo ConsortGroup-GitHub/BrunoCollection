@@ -24,6 +24,7 @@ jobs:
       - name: Install Bruno CLI
         run: |
           npm install -g @usebruno/cli
+          export PATH=$(npm config get prefix)/bin:$PATH
           echo "Bruno installed at: $(which bruno)"
           bruno --version
 
