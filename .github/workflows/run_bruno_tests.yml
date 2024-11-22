@@ -22,24 +22,19 @@ jobs:
           node-version: '16'
 
       - name: Install Bruno CLI
-        id: install-bruno
-        run: |
-          npm install -g @usebruno/cli
-          echo "Bruno installed at: $(npm config get prefix)/bin"
-          echo "PATH updated to: $PATH"
-          echo "::set-output name=bruno_path::$(npm config get prefix)/bin/bruno"
+        run: npm install @usebruno/cli
 
       - name: Debug Directory
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: DemoAurelienClimaginaire
-        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/Prod_Climaginaire.bru .
+        run: npx bruno run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: FakestoreAPI
-        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/QA.bru .
+        run: npx bruno run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: Webinar_Climaginaire
-        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: npx bruno run --env environments/Webinar_Prod_Climaginaire.bru .
