@@ -26,18 +26,19 @@ jobs:
         run: |
           npm install @usebruno/cli
           echo "BRUNO_PATH=$(pwd)/node_modules/.bin/bruno" >> $GITHUB_ENV
+        working-directory: ${{ github.workspace }}
 
       - name: Debug Directory
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
-        working-directory: DemoAurelienClimaginaire
+        working-directory: ${{ github.workspace }}/DemoAurelienClimaginaire
         run: $BRUNO_PATH run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
-        working-directory: FakestoreAPI
+        working-directory: ${{ github.workspace }}/FakestoreAPI
         run: $BRUNO_PATH run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
-        working-directory: Webinar_Climaginaire
+        working-directory: ${{ github.workspace }}/Webinar_Climaginaire
         run: $BRUNO_PATH run --env environments/Webinar_Prod_Climaginaire.bru .
