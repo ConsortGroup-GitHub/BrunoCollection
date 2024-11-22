@@ -1,0 +1,47 @@
+meta {
+  name: GetPriceOfSecondBD
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{climaginaire_BaseUrl}}/app/php/DatabaseGet.php?chro_id={{coll_chroID_SecondBD}}&detailChroMetadata=true
+  body: none
+  auth: none
+}
+
+params:query {
+  chro_id: {{coll_chroID_SecondBD}}
+  detailChroMetadata: true
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  var jsonData = res.getBody();
+  test("Prix de la BD", function () {
+      expect(jsonData[6].value).to.eql("26");
+  });
+  
+  
+  // // Utilisation de la librairie "ajv" (Another Json Validator) :
+  // var Ajv = require('ajv');
+  // var ajv = new Ajv({
+  //     logger: console,
+  //     allErrors: true
+  //     });
+  
+  // // Récupération du schema qui est dans une variable de collection :
+  // var schemaString = bru.getVar("monSchema");
+  // // Parser la chaîne de caractères en objet JSON
+  // var schema = JSON.parse(schemaString);
+  
+  // // Validation du respect du schema d'API :
+  // test('Vérification du respect du schema', function() {
+  //     var valid = ajv.validate(schema, jsonData);
+  //     expect(valid, JSON.stringify(ajv.errors)).to.be.true;
+  // });
+  
+}

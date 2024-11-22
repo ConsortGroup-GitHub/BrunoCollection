@@ -1,0 +1,27 @@
+meta {
+  name: GetPriceOfFirstBD
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{climaginaire_BaseUrl}}/app/php/DatabaseGet.php?chro_id={{coll_chroID_FirstBD}}&detailChroMetadata=true
+  body: none
+  auth: none
+}
+
+params:query {
+  chro_id: {{coll_chroID_FirstBD}}
+  detailChroMetadata: true
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  var jsonData = res.getBody();
+  test("Prix de la BD", function () {
+      expect(jsonData[5].value).to.eql("14,95");
+  });
+}

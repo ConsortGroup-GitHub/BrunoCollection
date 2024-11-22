@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Webinar_Climaginaire",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,47 @@
+meta {
+  name: GetListOfBDs
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{climaginaire_BaseUrl}}/app/php/DatabaseGet.php?category_code=bd&favorite=false&listChros=true&max=18&min=0&order=Date
+  body: none
+  auth: none
+}
+
+params:query {
+  category_code: bd
+  favorite: false
+  listChros: true
+  max: 18
+  min: 0
+  order: Date
+}
+
+script:pre-request {
+  console.log("Bonjour Aurélien !!");
+  
+  console.log(bru.getVar("coll_chroID_FirstBD"));
+}
+
+tests {
+  test("Vérification du bon code retour", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  var jsonData = res.getBody();
+  test("Vérification du chroniqueur de la première BD", function () {
+      expect(jsonData[0].chronicler).to.eql("Soleil");
+  });
+  
+  test("Vérification du chroniqueur de la seconde BD", function () {
+      expect(jsonData[1].chronicler).to.eql("ThêmysR");
+  });
+  
+  bru.setVar("coll_chroID_FirstBD", jsonData[0].chro_id);
+  
+  bru.setVar("coll_chroID_SecondBD", jsonData[1].chro_id);
+  
+  
+}

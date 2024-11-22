@@ -1,0 +1,27 @@
+meta {
+  name: GetDetailFirstBD
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BaseURL_Climaginaire}}/app/php/DatabaseGet.php?chro_id={{chro_id}}&detailChro=true
+  body: none
+  auth: none
+}
+
+params:query {
+  chro_id: {{chro_id}}
+  detailChro: true
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  let jsonData = res.getBody();
+  test("Vérification l'éditeur est bien jungle", function () {
+      expect(jsonData[0].publisher_code).to.eql("jungle");
+  });
+}

@@ -1,0 +1,115 @@
+meta {
+  name: GetFakestoreapiSchemaValidation
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BaseURL}}/products
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].id: eq 1
+  res.body[1].price: isNumber
+}
+
+script:pre-request {
+  console.log("Bonjour David !");
+}
+
+script:post-response {
+  console.log("Au revoir David !");
+  
+  // test("Check Status Code", function() {
+  //   expect(res.getStatus()).to.equal(200);
+  // });
+}
+
+tests {
+  console.log("Je suis dans l'onglet Tests !");
+  
+  test("Check Status Code", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  
+  const jsonData = res.getBody();
+  test("Check price of 1st product", function() {
+    expect(jsonData[0].price).to.equal(109.95);
+  });
+  
+  test("Check price of 2nd product", function() {
+    expect(jsonData[1].price).to.equal(22.3);
+  });
+  
+  
+  var Ajv = require('ajv');
+  var ajv = new Ajv({
+      logger: console,
+      allErrors: true
+      });
+  
+  var schema = {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Generated schema for Root",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "object",
+          "properties": {
+            "rate": {
+              "type": "number"
+            },
+            "count": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "rate",
+            "count"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "price",
+        "description",
+        "category",
+        "image",
+        "rating"
+      ]
+    }
+  };
+  
+  test("Vérification du respect du schema", function() {
+    var valid = ajv.validate(schema, jsonData);
+      expect(valid, JSON.stringify(ajv.errors)).to.be.true;
+  });
+}

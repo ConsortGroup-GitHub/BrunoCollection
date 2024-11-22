@@ -1,0 +1,38 @@
+meta {
+  name: GetListOfBD
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BaseURL_Climaginaire}}/app/php/DatabaseGet.php?category_code=bd&favorite=false&listChros=true&max=18&min=0&order=Date
+  body: none
+  auth: none
+}
+
+params:query {
+  category_code: bd
+  favorite: false
+  listChros: true
+  max: 18
+  min: 0
+  order: Date
+}
+
+tests {
+  test("Vérifier que le code retour est bien 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  let jsonData = res.getBody();
+  test("Vérification que le premier objet est bien une BD", function () {
+      expect(jsonData[0].category_shortdesc).to.eql("BD");
+  });
+  
+  test("Vérification que le dernier objet est bien une BD", function () {
+      expect(jsonData[17].category_shortdesc).to.eql("BD");
+  });
+  
+  bru.setVar("chro_id", jsonData[0].chro_id);
+  
+}
