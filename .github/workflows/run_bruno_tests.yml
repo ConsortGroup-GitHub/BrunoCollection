@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '20.12.1'
 
       - name: Install Bruno CLI
         run: npm install @usebruno/cli
@@ -29,12 +29,12 @@ jobs:
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: DemoAurelienClimaginaire
-        run: npx bruno run --env environments/Prod_Climaginaire.bru .
+        run: ../node_modules/.bin/bruno run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: FakestoreAPI
-        run: npx bruno run --env environments/QA.bru .
+        run: ../node_modules/.bin/bruno run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: Webinar_Climaginaire
-        run: npx bruno run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: ../node_modules/.bin/bruno run --env environments/Webinar_Prod_Climaginaire.bru .
