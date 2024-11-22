@@ -10,20 +10,6 @@ get {
   auth: none
 }
 
-assert {
-  res.status: eq 200
-  res.body[0].id: eq 1
-  res.body[1].price: isNumber
-}
-
-script:pre-request {
-  
-}
-
-script:post-response {
-  
-}
-
 tests {
   
   test("Check Status Code", function() {
@@ -40,6 +26,9 @@ tests {
     expect(jsonData[1].price).to.equal(22.3);
   });
   
+  test("Check title of 3rd product", function() {
+    expect(jsonData[2].title).to.equal("Mens Cotton Jacket");
+  });
   
   var Ajv = require('ajv');
   var ajv = new Ajv({
