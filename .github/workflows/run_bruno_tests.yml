@@ -35,12 +35,12 @@ jobs:
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: ${{ github.workspace }}/DemoAurelienClimaginaire
-        run: ${{ env.BRUNO_PATH }} run --env environments/Prod_Climaginaire.bru .
+        run: ${{ env.BRUNO_PATH }} run --env Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: ${{ github.workspace }}/FakestoreAPI
-        run: ${{ env.BRUNO_PATH }} run --env environments/QA.bru .
+        run: ${{ env.BRUNO_PATH }} run --env QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: ${{ github.workspace }}/Webinar_Climaginaire
-        run: ${{ env.BRUNO_PATH }} run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: ${{ env.BRUNO_PATH }} run --env Webinar_Prod_Climaginaire.bru .
