@@ -25,22 +25,22 @@ jobs:
         id: install-bruno
         run: |
           npm install @usebruno/cli
-          echo "BRUNO_PATH=$(pwd)/node_modules/.bin/bruno" >> $GITHUB_ENV
-          echo "Bruno installed at: $(pwd)/node_modules/.bin/bruno"
+          echo "BRUNO_PATH=$(pwd)/node_modules/.bin/bru" >> $GITHUB_ENV
+          echo "Bruno installed at: $(pwd)/node_modules/.bin/bru"
           ls -l $(pwd)/node_modules/.bin
-          $(pwd)/node_modules/.bin/bruno --version || echo "Bruno executable not found!"
+          $(pwd)/node_modules/.bin/bru --version || echo "Bru executable not found!"
 
       - name: Debug Directory
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: ${{ github.workspace }}/DemoAurelienClimaginaire
-        run: ${{ env.BRUNO_PATH }} run --env environments/Prod_Climaginaire.bru . || npx bruno run --env environments/Prod_Climaginaire.bru .
+        run: ${{ env.BRUNO_PATH }} run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: ${{ github.workspace }}/FakestoreAPI
-        run: ${{ env.BRUNO_PATH }} run --env environments/QA.bru . || npx bruno run --env environments/QA.bru .
+        run: ${{ env.BRUNO_PATH }} run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: ${{ github.workspace }}/Webinar_Climaginaire
-        run: ${{ env.BRUNO_PATH }} run --env environments/Webinar_Prod_Climaginaire.bru . || npx bruno run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: ${{ env.BRUNO_PATH }} run --env environments/Webinar_Prod_Climaginaire.bru .
