@@ -24,8 +24,10 @@ jobs:
       - name: Install Bruno CLI
         run: |
           npm install -g @usebruno/cli
+          # Ajouter le chemin des binaires npm globaux au PATH
           export PATH=$(npm config get prefix)/bin:$PATH
-          echo "Bruno installed at: $(which bruno)"
+          echo "Bruno installed at: $(npm config get prefix)/bin"
+          echo "PATH updated to: $PATH"
           bruno --version
 
       - name: Debug Directory
