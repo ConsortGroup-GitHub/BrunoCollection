@@ -33,14 +33,6 @@ jobs:
       - name: Debug Directory
         run: pwd && ls -R
 
-      - name: Run Collection DemoAurelienClimaginaire
-        working-directory: ${{ github.workspace }}/DemoAurelienClimaginaire
-        run: ${{ env.BRUNO_PATH }} run --env Prod_Climaginaire .
-
       - name: Run Collection FakestoreAPI
         working-directory: ${{ github.workspace }}/FakestoreAPI
         run: ${{ env.BRUNO_PATH }} run --env QA .
-
-      - name: Run Collection Webinar_Climaginaire
-        working-directory: ${{ github.workspace }}/Webinar_Climaginaire
-        run: ${{ env.BRUNO_PATH }} run --env Webinar_Prod_Climaginaire .
