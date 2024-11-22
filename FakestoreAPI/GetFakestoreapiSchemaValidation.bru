@@ -17,19 +17,14 @@ assert {
 }
 
 script:pre-request {
-  console.log("Bonjour David !");
+  
 }
 
 script:post-response {
-  console.log("Au revoir David !");
   
-  // test("Check Status Code", function() {
-  //   expect(res.getStatus()).to.equal(200);
-  // });
 }
 
 tests {
-  console.log("Je suis dans l'onglet Tests !");
   
   test("Check Status Code", function() {
     expect(res.getStatus()).to.equal(200);
