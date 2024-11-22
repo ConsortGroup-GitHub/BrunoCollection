@@ -22,25 +22,24 @@ jobs:
           node-version: '16'
 
       - name: Install Bruno CLI
+        id: install-bruno
         run: |
           npm install -g @usebruno/cli
-          # Ajouter le chemin des binaires npm globaux au PATH
-          export PATH=$(npm config get prefix)/bin:$PATH
           echo "Bruno installed at: $(npm config get prefix)/bin"
           echo "PATH updated to: $PATH"
-          bruno --version
+          echo "::set-output name=bruno_path::$(npm config get prefix)/bin/bruno"
 
       - name: Debug Directory
         run: pwd && ls -R
 
       - name: Run Collection DemoAurelienClimaginaire
         working-directory: DemoAurelienClimaginaire
-        run: bruno run --env environments/Prod_Climaginaire.bru .
+        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/Prod_Climaginaire.bru .
 
       - name: Run Collection FakestoreAPI
         working-directory: FakestoreAPI
-        run: bruno run --env environments/QA.bru .
+        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/QA.bru .
 
       - name: Run Collection Webinar_Climaginaire
         working-directory: Webinar_Climaginaire
-        run: bruno run --env environments/Webinar_Prod_Climaginaire.bru .
+        run: ${{ steps.install-bruno.outputs.bruno_path }} run --env environments/Webinar_Prod_Climaginaire.bru .
