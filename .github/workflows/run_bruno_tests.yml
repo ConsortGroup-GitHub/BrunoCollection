@@ -12,6 +12,9 @@ jobs:
   run-bruno-collections:
     runs-on: ubuntu-latest
 
+    env:
+      BRUNO_PATH: ""
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
