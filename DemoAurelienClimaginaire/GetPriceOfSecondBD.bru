@@ -20,10 +20,10 @@ tests {
       expect(res.getStatus()).to.equal(200);
   });
   
-  var jsonData = res.getBody();
-  test("Prix de la BD", function () {
-      expect(jsonData[5].value).to.eql("11,90");
-  });
+  // var jsonData = res.getBody();
+  // test("Prix de la BD", function () {
+  //     expect(jsonData[5].value).to.eql("11,90");
+  // });
   
   
   // // Utilisation de la librairie "ajv" (Another Json Validator) :

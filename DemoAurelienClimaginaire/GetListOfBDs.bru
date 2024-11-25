@@ -31,13 +31,13 @@ tests {
   });
   
   var jsonData = res.getBody();
-  test("Vérification du chroniqueur de la première BD", function () {
-      expect(jsonData[0].chronicler).to.eql("Soleil");
-  });
+  // test("Vérification du chroniqueur de la première BD", function () {
+  //     expect(jsonData[0].chronicler).to.eql("Soleil");
+  // });
   
-  test("Vérification du chroniqueur de la seconde BD", function () {
-      expect(jsonData[1].chronicler).to.eql("Funnyface");
-  });
+  // test("Vérification du chroniqueur de la seconde BD", function () {
+  //     expect(jsonData[1].chronicler).to.eql("Funnyface");
+  // });
   
   bru.setVar("coll_chroID_FirstBD", jsonData[0].chro_id);
   

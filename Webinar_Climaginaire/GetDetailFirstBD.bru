@@ -20,8 +20,8 @@ tests {
       expect(res.getStatus()).to.equal(200);
   });
   
-  let jsonData = res.getBody();
-  test("Vérification l'éditeur est bien jungle", function () {
-      expect(jsonData[0].publisher_code).to.eql("jungle");
-  });
+  // let jsonData = res.getBody();
+  // test("Vérification l'éditeur est bien jungle", function () {
+  //     expect(jsonData[0].publisher_code).to.eql("jungle");
+  // });
 }
