@@ -40,3 +40,7 @@ jobs:
       - name: Run Collection Webinar_Climaginaire
         working-directory: ${{ github.workspace }}/Webinar_Climaginaire
         run: ${{ env.BRUNO_PATH }} run --insecure --env Webinar_Prod_Climaginaire .
+
+      - name: Run Collection DemoAurelienClimaginaire
+        working-directory: ${{ github.workspace }}/DemoAurelienClimaginaire
+        run: ${{ env.BRUNO_PATH }} run --insecure --env Prod_Climaginaire .
